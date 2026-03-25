@@ -197,7 +197,7 @@ const App = () => {
             Schedultron
           </div>
 
-          <div className="hidden lg:flex bg-black/20 p-1 rounded-xl border border-white/5">
+          <div className="hidden lg:flex bg-black/20 p-1 rounded-xl border border-white/5 gap-1">
             {views.map((v) => (
               <button
                 key={v.id}
