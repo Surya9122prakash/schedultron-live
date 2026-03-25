@@ -12,7 +12,26 @@ const Icons = {
   Pointer: () => <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
 };
 
-const CustomDropdown = ({ options, value, onChange, className, searchable = false }: any) => {
+type Option = {
+  label: string;
+  value: string;
+};
+
+type CustomDropdownProps = {
+  options: Option[];
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+  searchable?: boolean;
+};
+
+const CustomDropdown = ({
+  options,
+  value,
+  onChange,
+  className,
+  searchable = false
+}: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
