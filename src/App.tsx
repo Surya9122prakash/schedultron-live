@@ -145,6 +145,11 @@ const App = () => {
     }
   ]);
 
+  // Sync selectedDate when timezone changes to maintain consistency
+  useEffect(() => {
+    setSelectedDate(prev => moment(prev).tz(timezone));
+  }, [timezone]);
+
   const handleAddEvent = (event: any) => setEvents([...events, event]);
   const handleEditEvent = (updated: any) => setEvents(events.map(e => e.id === updated.id ? updated : e));
   const handleDeleteEvent = (id: string) => setEvents(events.filter(e => e.id !== id));
@@ -281,6 +286,7 @@ const App = () => {
                     <DatePicker
                       value={selectedDate}
                       onChange={(date: Moment) => setSelectedDate(date)}
+                      timezone={timezone}
                       calendarThemeVariant={calendarTheme}
                       placeholder="Select a date"
                     />
@@ -312,6 +318,7 @@ const App = () => {
                     <SlotDatePicker
                       value={selectedDate}
                       onChange={(date: Moment) => setSelectedDate(date)}
+                      timezone={timezone}
                       calendarThemeVariant={calendarTheme}
                       slots={mockSlots}
                       onSlotSelect={setSelectedSlot}
